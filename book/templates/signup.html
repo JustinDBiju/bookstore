@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signup Page</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Custom styles */
+    .login-form {
+      width: 300px;
+      margin: 0 auto;
+      margin-top: 100px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="login-form">
+        <form method="post">
+            {% csrf_token %}
+      <h2 class="text-center mb-4">Sign Up</h2>
+      <div class="form-group">
+        <input type="name" class="form-control" name='name' placeholder="Name" required="required">
+      </div>
+        <div class="form-group">
+          <input type="mobile" class="form-control" name='mobile' placeholder="Phone number" required="required">
+        </div>
+        <div class="form-group">
+          <input type="password" class="form-control" name="password1" placeholder="Password" required="required">
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" name="password2" placeholder="Confirm Password" required="required">
+          </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary btn-block">Sign up</button>
+        </div>
+        <div class="clearfix">
+          <label class="float-left form-check-label"><input type="checkbox"> Remember me</label>
+          <a href="#" class="float-right">Forgot Password?</a>
+        </div>        
+      </form>
+      <p class="text-center mt-3">Already have an Account! <a href="{% url 'login' %}">Login</a></p>
+    </div>
+  </div>
+</body>
+</html>

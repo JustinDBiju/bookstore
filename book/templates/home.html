@@ -1,0 +1,183 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %} 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {
+  font-family: Arial;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+form.example input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+}
+
+form.example button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+
+form.example button:hover {
+  background: #0b7dda;
+}
+
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+</style>
+  
+      
+     <br>
+     <br>
+     <br>
+     <br>
+
+      <form method="POST" class="example" action="" style="margin:auto;max-width:400px">
+        {% csrf_token %}
+        <input type="text" placeholder="Search.." name="search">
+        <button type="submit"><i class="fa fa-search"></i></button>
+      </form>
+
+      <br>
+      <br>
+      <br> 
+      <br>
+
+
+
+      <div class="container-fluid p-0 m-0  
+                align-items-center  
+                justify-content-center d-flex" 
+            style="min-height: 100vh;"> 
+  
+        <!-- Row for the card-->
+        <div class="row w-100 p-0 w-0"> 
+
+          {% if result %}
+  
+            <!-- Column for card-->
+            {% for book in result %}
+            <div class="col-lg-4 mb-2"> 
+                <div class="card mx-auto" style="width:20rem;height:33rem;"> 
+                  
+                    <img class="card-img-top" src= "{{book.image.url}}"alt="Card image cap" height="300px;" width="100px"> 
+                  
+                    <div class="card-body"> 
+                        <h5 class="card-title"> 
+                            {{book.name}}
+                        </h5> 
+                        <p class="card-text"> 
+                            {{book.desc}} 
+                        </p> 
+                        <p class="card-text" style="color: blue;"> 
+                            &#8377 {{book.amount}} 
+                        </p> 
+                        <br>
+  
+                          
+                        <a href="#link" class="btn btn-warning" role="button">Buy Now</a> 
+                    </div> 
+                </div> 
+            </div> 
+            {% endfor %}
+            {% elif b == 'search' and not result %}
+            <div style="margin-left: 40%"> 
+              <h1>No data Found !!!</h1>
+          </div>
+{% else %}
+
+{% for book in book %}
+            <div class="col-lg-4 mb-2"> 
+                <div class="card mx-auto" style="width:20rem;height:33rem;"> 
+                  
+                    <img class="card-img-top" src= "{{book.image.url}}"alt="Card image cap" height="300px;" width="100px"> 
+                
+                    <div class="card-body"> 
+                        <h5 class="card-title"> 
+                            {{book.name}}
+                        </h5> 
+                        <p class="card-text"> 
+                            {{book.desc}} 
+                        </p> 
+                        <p class="card-text" style="color: blue;"> 
+                            &#8377 {{book.amount}} 
+                        </p> 
+                        <br>
+  
+                          
+                        <a href="#link" class="btn btn-warning" role="button">Buy Now</a> 
+                    </div> 
+                </div> 
+            </div> 
+            {% endfor %}
+            
+
+            {% endif %}
+  
+            <!-- Another column for card -->
+           
+             
+        </div> 
+    </div> 
+  
+      <!-- Subscribe Form Starts Here -->
+      <div class="subscribe-form">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="section-heading">
+                <div class="line-dec"></div>
+                <h1>Subscribe on Book Cafe!</h1>
+              </div>
+            </div>
+            <div class="col-md-8 offset-md-2">
+              <div class="main-content">
+                <p>Integer vel turpis ultricies, lacinia ligula id, lobortis augue. Vivamus porttitor dui id dictum efficitur. Phasellus vel interdum elit.</p>
+                <div class="container">
+                  <form id="subscribe" action="" method="get">
+                    <div class="row">
+                      <div class="col-md-7">
+                        <fieldset>
+                          <input name="email" type="text" class="form-control" id="email" 
+                          onfocus="if(this.value == 'Your Email...') { this.value = ''; }" 
+                          onBlur="if(this.value == '') { this.value = 'Your Email...';}"
+                          value="Your Email..." required="">
+                        </fieldset>
+                      </div>
+                      <div class="col-md-5">
+                        <fieldset>
+                          <button type="submit" id="form-submit" class="button">Subscribe Now!</button>
+                        </fieldset>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Subscribe Form Ends Here -->
+ 
+
+
+
+{% endblock %}
